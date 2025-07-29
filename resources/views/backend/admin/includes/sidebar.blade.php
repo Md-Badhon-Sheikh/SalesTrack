@@ -2,7 +2,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
         <a href="{{ url('/') }}" class="sidebar-brand">
-            DBA<span>Clinic</span>
+            Sales<span>Track</span>
         </a>
         <div class="sidebar-toggler ">
             <span></span>

@@ -2,7 +2,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
         <a href="{{ url('/') }}" class="sidebar-brand">
-            DBA<span>Clinic</span>
+            Sales<span>Track</span>
         </a>
         <div class="sidebar-toggler ">
             <span></span>
@@ -12,7 +12,7 @@
     </div>
     <div class="sidebar-body">
         <ul class="nav">
-            <li class="nav-item nav-category">Operator</li>
+            <li class="nav-item nav-category">Sales Man</li>
             <!--  Dashboard  -->
             <li class="nav-item {{ $data['active_menu'] == 'dashboard' ? 'active' : '' }}">
                 <a href="{{ route('operator.dashboard') }}" class="nav-link ">

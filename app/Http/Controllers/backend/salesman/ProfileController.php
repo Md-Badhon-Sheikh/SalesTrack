@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\backend\operator;
+namespace App\Http\Controllers\backend\salesman;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\BackendAuthenticationMiddleware;
-use App\Http\Middleware\OperatorAuthenticationMiddleware;
+use App\Http\Middleware\SalesmanAuthenticationMiddleware;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -18,7 +18,7 @@ class ProfileController extends Controller implements HasMiddleware
     {
         return [
             BackendAuthenticationMiddleware::class,
-            OperatorAuthenticationMiddleware::class
+            SalesmanAuthenticationMiddleware::class
         ];
     }
 
@@ -29,7 +29,7 @@ class ProfileController extends Controller implements HasMiddleware
         $data  = array();
         $data['active_menu'] = 'Profile';
         $data['page_title'] = 'Profile';
-        return view('backend.operator.pages.profile', compact('data'));
+        return view('backend.salesman.pages.profile', compact('data'));
     }
 
     public function profile_info_update(Request $request)

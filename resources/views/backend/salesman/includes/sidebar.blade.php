@@ -15,7 +15,7 @@
             <li class="nav-item nav-category">Sales Man</li>
             <!--  Dashboard  -->
             <li class="nav-item {{ $data['active_menu'] == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ route('operator.dashboard') }}" class="nav-link ">
+                <a href="{{ route('salesman.dashboard') }}" class="nav-link ">
                     <i class="fa-solid fa-chart-line"></i>
                     <span class="link-title">Dashboard</span>
                 </a>

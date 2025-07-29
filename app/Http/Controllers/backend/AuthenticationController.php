@@ -28,7 +28,7 @@ class AuthenticationController extends Controller
             //attempt
             if (Auth::attempt($credentials)) {
                 if(Auth::user()->user_type == 'admin') return redirect()->intended(route('admin.dashboard'));
-                if(Auth::user()->user_type == 'operator') return redirect()->intended(route('operator.dashboard'));
+                if(Auth::user()->user_type == 'salesman') return redirect()->intended(route('salesman.dashboard'));
             }
             // else 
             return back()->withErrors([

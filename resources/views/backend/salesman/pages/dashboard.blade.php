@@ -1,4 +1,4 @@
-@extends('backend.operator.includes.operator_layout')
+@extends('backend.salesman.includes.salesman_layout')
 @section('content')
     <div class="page-content">
         <div class="row justify-content-center">

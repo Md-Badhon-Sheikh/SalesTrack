@@ -1,4 +1,4 @@
-@extends('backend.operator.includes.operator_layout')
+@extends('backend.salesman.includes.salesman_layout')
 @push('css')
 @endpush
 @section('content')
@@ -25,7 +25,7 @@
                     <div class="card-body">
                         <h6 class="card-title"> Update Your Profile</h6>
                        
-                        <form action="{{ route('operator.profile.info.update') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('salesman.profile.info.update') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-6">
@@ -86,7 +86,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title"> Update Your Password </h6>
-                        <form action="{{ route('operator.profile.password.update') }}" method="post">
+                        <form action="{{ route('salesman.profile.password.update') }}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="mb-3">

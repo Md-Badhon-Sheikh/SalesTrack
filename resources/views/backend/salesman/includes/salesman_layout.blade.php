@@ -52,11 +52,11 @@
     <script src="{{ asset('assets/js/loader.js') }}"></script>
 
     <div class="main-wrapper">
-        @include('backend.operator.includes.sidebar')
+        @include('backend.salesman.includes.sidebar')
         <div class="page-wrapper">
-            @include('backend.operator.includes.header')
+            @include('backend.salesman.includes.header')
             @yield('content')
-            @include('backend.operator.includes.footer')
+            @include('backend.salesman.includes.footer')
         </div>
 
     </div>

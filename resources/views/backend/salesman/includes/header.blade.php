@@ -36,13 +36,13 @@
                     </div>
                     <ul class="list-unstyled p-1">
                         <li class="dropdown-item py-2">
-                                <a href="{{ route('operator.profile') }}" class="text-body ms-0">
+                                <a href="{{ route('salesman.profile') }}" class="text-body ms-0">
                                     <i class="me-2 icon-md" data-feather="user"></i>
                                     <span>Profile</span>
                                 </a>
                         </li>
                         <li class="dropdown-item py-2">
-                            <a href="{{ route('operator.logout') }}" class="text-body ms-0">
+                            <a href="{{ route('salesman.logout') }}" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="log-out"></i>
                                 <span>Log Out</span>
                             </a>

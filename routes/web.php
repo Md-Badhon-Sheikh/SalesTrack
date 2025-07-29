@@ -3,11 +3,12 @@
 use App\Http\Controllers\backend\admin\DashboardController;
 use App\Http\Controllers\backend\admin\ProfileController;
 use App\Http\Controllers\backend\AuthenticationController;
-use App\Http\Controllers\backend\operator\DashboardController as OperatorDashboardController;
-use App\Http\Controllers\backend\operator\ProfileController as OperatorProfileController;
+use App\Http\Controllers\backend\salesman\DashboardController as SalesmanDashboardController;
+use App\Http\Controllers\backend\salesman\ProfileController as SalesmanProfileController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Middleware\AdminAuthenticationMiddleware;
-use App\Http\Middleware\OperatorAuthenticationMiddleware;
+use App\Http\Middleware\Salesman;
+use App\Http\Middleware\SalesmanAuthenticationMiddleware;
 use Illuminate\Support\Facades\Route;
 
 // frontend 
@@ -35,18 +36,18 @@ Route::prefix('admin')->group(function () {
 });
 // Advocate 
 // route prefix
-Route::prefix('operator')->group(function () {
+Route::prefix('salesman')->group(function () {
     // route name prefix
-    Route::name('operator.')->group(function () {
+    Route::name('salesman.')->group(function () {
         //middleware 
-            Route::middleware(OperatorAuthenticationMiddleware::class)->group(function () {
+            Route::middleware(SalesmanAuthenticationMiddleware::class)->group(function () {
             Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
             //profile 
-            Route::get('profile', [OperatorProfileController::class, 'profile'])->name('profile');
-            Route::post('profile-info/update', [OperatorProfileController::class, 'profile_info_update'])->name('profile.info.update');
-            Route::post('profile-password/update', [OperatorProfileController::class, 'profile_password_update'])->name('profile.password.update');
+            Route::get('profile', [SalesmanProfileController::class, 'profile'])->name('profile');
+            Route::post('profile-info/update', [SalesmanProfileController::class, 'profile_info_update'])->name('profile.info.update');
+            Route::post('profile-password/update', [SalesmanProfileController::class, 'profile_password_update'])->name('profile.password.update');
             //dashboard 
-            Route::get('dashboard', [OperatorDashboardController::class, 'dashboard'])->name('dashboard');
+            Route::get('dashboard', [SalesmanDashboardController::class, 'dashboard'])->name('dashboard');
         });
     });
 });

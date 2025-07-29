@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\backend\operator;
+namespace App\Http\Controllers\backend\salesman;
 
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\BackendAuthenticationMiddleware;
-use App\Http\Middleware\OperatorAuthenticationMiddleware;
+use App\Http\Middleware\SalesmanAuthenticationMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -19,7 +19,7 @@ class DashboardController extends Controller implements HasMiddleware
   {
     return [
       BackendAuthenticationMiddleware::class,
-      OperatorAuthenticationMiddleware::class
+      SalesmanAuthenticationMiddleware::class
     ];
   }
 
@@ -29,6 +29,6 @@ class DashboardController extends Controller implements HasMiddleware
     $data['total_student'] = 0;
     $data['active_menu'] = 'dashboard';
     $data['page_title'] = 'Dashboard';
-    return view('backend.operator.pages.dashboard', compact('data'));
+    return view('backend.salesman.pages.dashboard', compact('data'));
   }
 }

@@ -19,7 +19,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;display=swap"
         rel="stylesheet">
-    <!-- End fonts -->
+
+        <!-- End fonts -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- core:css -->
     <link rel="stylesheet" href="{{ asset('backend_assets/vendors/core/core.css') }}">
@@ -37,6 +40,17 @@
     <!-- End layout styles -->
 
     <link rel="shortcut icon" href="{{ asset('backend_assets/images/favicon.png') }}" />
+    <style>
+        .passwordInputField {
+            position: relative;
+        }
+
+        .showHidePassword {
+            position: absolute;
+            right: 10px;
+            top: 38px;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,10 +69,11 @@
                                 </div>
                                 <div class="col-md-8 ps-md-0">
                                     <div class="auth-form-wrapper px-4 py-5">
-                                        <a href="" class="noble-ui-logo d-block mb-2">DBA<span>Clinic</span></a>
+                                        <a href="" class="noble-ui-logo d-block mb-2">Login<span>  Panel</span></a>
                                         @if(session('error'))
-                                            <div class="popupRightBottom text-danger timeout mt-1">
-                                                {{ session('error') }}</div>
+                                        <div class="popupRightBottom text-danger timeout mt-1">
+                                            {{ session('error') }}
+                                        </div>
                                         @endif
                                         <form class="forms-sample" action="{{ route('login') }}" method="POST">
                                             @csrf
@@ -68,17 +83,21 @@
                                                     class="form-control @error('email') is-invalid @enderror"
                                                     id="userEmail" placeholder="Email">
                                             </div>
-                                            <div class="mb-2">
+
+
+                                            <div class="passwordInputField mb-2">
                                                 <label for="userPassword" class="form-label">Password</label>
                                                 <input type="password" value="" name="password"
                                                     class="form-control @error('password') is-invalid @enderror"
                                                     id="userPassword" autocomplete="current-password"
                                                     placeholder="Password">
-                                                    <div class="mt-3">
-                                                        <input type="checkbox" class="form-check-input" onclick="show_password()" > 
-                                                        <label class="form-check-label">Show Password</label> 
-                                                    </div>
+                                                <div class="showHidePassword">
+                                                    <div onclick="show_password()"> <i class="fa-solid fa-eye"
+                                                            id="icon"></i></div>
+                                                </div>
                                             </div>
+
+
                                             <div class="form-check mb-3">
                                                 <input type="checkbox" name="checkbox"
                                                     class="form-check-input @error('checkbox') is-invalid @enderror"
@@ -122,16 +141,22 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-        function show_password(){
-            var input  = document.getElementById('userPassword'); 
-            if(input.type === 'password'){
-                input.type = 'text';
-            }else{
-                input.type = 'password'
+          <script>
+            function show_password() {
+                var input = document.getElementById('userPassword');
+                let icon = document.getElementById('icon');
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
             }
-        }
-    </script>
+        </script>
 </body>
 
 

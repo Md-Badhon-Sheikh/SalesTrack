@@ -36,7 +36,8 @@ Route::prefix('admin')->group(function () {
             Route::match(['get', 'post'], 'salesman/add', [SalesmanController::class, 'salesman_add'])->name('salesman.add');
             Route::get('salesman/list', [SalesmanController::class, 'salesman_list'])->name('salesman.list');
             Route::match(['get', 'post'], 'salesman/edit/{id}', [SalesmanController::class, 'salesman_edit'])->name('salesman.edit');
-        
+            Route::get('salesman/delete/{id}',[SalesmanController::class,'salesman_delete'])->name('salesman.delete');
+
         });
     });
 });

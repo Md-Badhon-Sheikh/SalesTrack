@@ -73,8 +73,7 @@ class SalesmanController extends Controller implements HasMiddleware
 
     // edit 
 
-
-   public function salesman_edit(Request $request, $id)
+    public function salesman_edit(Request $request, $id)
 {
     $data = [];
     $data['salesman'] = User::findOrFail($id);
@@ -83,20 +82,25 @@ class SalesmanController extends Controller implements HasMiddleware
         $old_photo = $data['salesman']->photo;
         $photo = $request->file('photo');
 
+        // default value
+        $photo_path = $old_photo;
+
         if ($photo) {
             $photo_extension = $photo->getClientOriginalExtension();
-            $photo_name = 'backend_assets/images/user/' . uniqid() . '.' . $photo_extension;
+            $photo_name = uniqid() . '.' . $photo_extension;
+            $relative_path = 'backend_assets/images/user/' . $photo_name;
+            $absolute_path = public_path($relative_path);
 
-            // Resize and save using Intervention Image
+            // Resize and save new photo
             $image = Image::make($photo);
-            $image->resize(300, 300);
-            $image->save(public_path($photo_name));
+            $image->resize(300, 300)->save($absolute_path);
 
-            if (File::exists(public_path($old_photo))) {
+            // Delete old photo if exists
+            if ($old_photo && File::exists(public_path($old_photo))) {
                 File::delete(public_path($old_photo));
             }
-        } else {
-            $photo_name = $old_photo;
+
+            $photo_path = $relative_path;
         }
 
         try {
@@ -106,11 +110,11 @@ class SalesmanController extends Controller implements HasMiddleware
                 'phone' => $request->phone,
                 'password' => $request->password ? bcrypt($request->password) : $data['salesman']->password,
                 'user_type' => $request->user_type,
-                'photo' => $photo_name, // ✅ fixed here
+                'photo' => $photo_path,
             ]);
             return back()->with('success', 'Updated Successfully');
         } catch (PDOException $e) {
-            return back()->with('error', 'Failed Please try Again');
+            return back()->with('error', 'Failed! Please try again.');
         }
     }
 
@@ -119,4 +123,23 @@ class SalesmanController extends Controller implements HasMiddleware
     return view('backend.admin.pages.salesman_edit', compact('data'));
 }
 
+
+
+    // delete function 
+
+    public function salesman_delete($id)
+    {
+        $server_response = ['status' => 'FAILED', 'message' => 'Not Found'];
+        $salesman = User::findOrFail($id);
+        if ($salesman) {
+            if (File::exists($salesman->photo)) {
+                File::delete($salesman->photo);
+            }
+            $salesman->delete();
+            $server_response = ['status' => 'SUCCESS', 'message' => 'Deleted Successfully'];
+        } else {
+            $server_response = ['status' => 'FAILED', 'message' => 'Not Found'];
+        }
+        echo json_encode($server_response);
+    }
 }

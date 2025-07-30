@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\admin\DashboardController;
 use App\Http\Controllers\backend\admin\ProfileController;
+use App\Http\Controllers\backend\admin\SalesmanController;
 use App\Http\Controllers\backend\AuthenticationController;
 use App\Http\Controllers\backend\salesman\DashboardController as SalesmanDashboardController;
 use App\Http\Controllers\backend\salesman\ProfileController as SalesmanProfileController;
@@ -31,6 +32,11 @@ Route::prefix('admin')->group(function () {
             Route::post('profile-password/update', [ProfileController::class, 'profile_password_update'])->name('profile.password.update');
             //dashboard
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+            Route::match(['get', 'post'], 'salesman/add', [SalesmanController::class, 'salesman_add'])->name('salesman.add');
+            Route::get('salesman/list', [SalesmanController::class, 'salesman_list'])->name('salesman.list');
+            Route::match(['get', 'post'], 'salesman/edit/{id}', [SalesmanController::class, 'salesman_edit'])->name('salesman.edit');
+        
         });
     });
 });

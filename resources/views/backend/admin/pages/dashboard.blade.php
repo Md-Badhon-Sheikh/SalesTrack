@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Total Students </h6>
+                                <h6 class="card-title mb-0">Total SalesMan </h6>
                             </div>
                             <div class="mt-2" style="color: green ;font-size:18px">
                                 {{ $data['total_student'] }}

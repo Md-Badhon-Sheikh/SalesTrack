@@ -4,6 +4,7 @@ use App\Http\Controllers\backend\admin\DashboardController;
 use App\Http\Controllers\backend\admin\ProfileController;
 use App\Http\Controllers\backend\admin\SalesmanController;
 use App\Http\Controllers\backend\AuthenticationController;
+use App\Http\Controllers\backend\ChatController;
 use App\Http\Controllers\backend\salesman\DashboardController as SalesmanDashboardController;
 use App\Http\Controllers\backend\salesman\ProfileController as SalesmanProfileController;
 use App\Http\Controllers\FrontEndController;
@@ -38,6 +39,8 @@ Route::prefix('admin')->group(function () {
             Route::match(['get', 'post'], 'salesman/edit/{id}', [SalesmanController::class, 'salesman_edit'])->name('salesman.edit');
             Route::get('salesman/delete/{id}',[SalesmanController::class,'salesman_delete'])->name('salesman.delete');
 
+
+             Route::get('chat/{receiver_id}', [ChatController::class, 'chatWith'])->name('chat');
         });
     });
 });
@@ -55,6 +58,8 @@ Route::prefix('salesman')->group(function () {
             Route::post('profile-password/update', [SalesmanProfileController::class, 'profile_password_update'])->name('profile.password.update');
             //dashboard 
             Route::get('dashboard', [SalesmanDashboardController::class, 'dashboard'])->name('dashboard');
+
+             Route::get('chat/{receiver_id}', [ChatController::class, 'chatWith'])->name('chat');
         });
     });
 });

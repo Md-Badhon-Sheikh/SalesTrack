@@ -14,7 +14,7 @@
     <meta name="keywords"
         content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <title> {{ isset($data['page_title']) ? $data['page_title'] : 'Adv-Diary' }} </title>
+    <title> {{ isset($data['page_title']) ? $data['page_title'] : 'Sales Track' }} </title>
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
 
     <!-- Fonts -->
